@@ -1,0 +1,68 @@
+/*html根元素，css具有inherit继承能力，
+在他及body设置的样式，作用于所有元素*/
+/*css重置，让浏览器成为一张白纸8*/
+*{
+  margin: 0;
+  padding: 0;
+}
+html{
+  font-size: 10px;
+  background:url(./b9r5sEL.jpg) bottom center;
+  background-repeat: no-repeat;
+  /*浏览器前缀 css3曾经是新的，很多浏览器不支持，或部分支持，实验性质支持，加上前缀*/
+  /*移动端项目的情况下可以删除 pc端不可以
+  -ms-background-size:contain;*/
+  -webkit-bacground-size:cover;
+  background-size: cover;
+}
+body,html{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+.keys{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /*vh只跟屏幕有关，总共100份，比例分配的关系*/
+  min-height: 100vh;
+}
+.key{
+  color:green;
+  border: .4rem solid #000;
+  /*rem? 和vh是一路货色，是css3的相对单位。
+  rem是relative html标签的font-size等比例换算关系，大小将与设备无关。
+  iphone7作为开发机型
+  px现在不靠谱了，屏幕密度问题。*/
+  -webkit-border-radius: .5rem;
+  border-radius: .5rem;
+  font-size: 1.5rem;
+  margin: 1rem;
+  padding: 1rem .0.5rem;
+  width: 10rem;
+  text-align: center;
+  background: rgba(0,0,0,1);
+  /*水平 垂直偏移量 阴影的大小*/
+  text-shadow: 0 0 .5rem black;
+  /*样式会自动添加渐变
+  all 支持的样式
+  .7s 时间
+  ease 改变的速度，快速运动，由慢到快*/
+  transition: all .07s ease;
+}
+.key>div{
+  font-size: 4rem;
+}
+.key .sound{
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  color: #ffc600;
+}
+.playing{
+  /*并行放大*/
+  transform: scale(1.1);
+  border-color: #ffc600;
+  box-shadow: 0 0 1em #ffc600;
+
+}
