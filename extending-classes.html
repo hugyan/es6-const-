@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Extending Classes</title>
+</head>
+<body>
+<script>
+//面向对象。做了封装
+//属性和方法的集合，主要是隐藏实现的细节
+//this.attr 公开属性，public 外界可访问的数据
+//this.func()public 方法， 给外界调用的借口
+//继承 extends
+//constructor()
+//super() 是必须的
+//super.eat() override
+//当我们在用面向对象时，众生平等。
+//UML
+//多态 多个类 同样的借口  忽略类别 互换使用
+//接口 类必须要实现的方法，interface
+//implement
+//设计模式 基于接口的，不是为了代码的具体实现，
+//而是在面向对象大型项目中，积累下来的解决特定
+//问题的套路，23种
+var googleMap = {
+    show:function(){
+          console.log('开始渲染谷歌地图')
+    }
+}
+//高德百度之争
+var baiduMap = {
+    show:function(){
+          console.log('开始渲染百度地图')
+    }
+}
+function renderMap(map){
+    //多态
+    //具有这个接口
+    //json对象字面量
+    if ('show' in map&&
+    map.show instanceof Function){
+        map.show();
+    }
+    map.show();
+}
+renderMap(baiduMap);
+
+//基类
+class Animal{
+    //构造器
+   constructor(name){
+       this.name = name;
+       this.thirst = 100;
+       this.belly = [];
+   }
+    drink(){
+        this.thirst -= 10;
+        return this.thirst;
+    }
+    eat(food){
+        console.log('给我点吃的');
+        this.belly.push(food);
+        console.log
+        return this.belly
+    }
+    bait(){
+        console.log(this.name + '咬一下');
+    }
+}
+// 子类 独特的特性
+class Dog extends Animal{
+       constructor (name,breed){
+           //super 将代表父亲
+           //super()父亲的构造函数执行
+           //es6 class 只是一个语法糖
+           //其实它是es5 function+prototype的polufill
+           super(name);
+           this.breed = breed;
+       }
+        eat(food){
+            if(food === '骨头'){
+                super.eat(food);
+            }else{
+            console.log('给我一根骨头');
+            }
+        }
+        bark(){
+            console.log('Bark bark I\'m a dog');
+        }
+        bait(){
+            super.bait();
+            console.log('狗不理包子')
+        }
+}
+class Cat extends Animal{
+    constructor(name){
+        super(name)
+    }
+    bait(){
+        super.bait()
+        console.log('给个毛线球铃铛');
+    }
+}
+const rhino = new Animal('Rhiney');
+const snickers = new Dog('Snickers', 'KingCharles');
+const scat = new Cat('sewcat');
+console.log(snickers.drink());
+console.log(snickers.eat('骨头'));
+snickers.bark();
+function bait(animal){
+    animal.bait();
+}
+bait(snickers);
+bait(scat);
+
+</script>
+</body>
+</html>
